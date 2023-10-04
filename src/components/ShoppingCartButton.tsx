@@ -3,11 +3,11 @@ import { ShoppingCart } from "@/lib/cart";
 import formatPrice from "@/lib/format";
 import Link from "next/link";
 
-type ShoppingCardButtonProps = {
+type ShoppingCartButtonProps = {
   cart: ShoppingCart | null;
 };
 
-const ShoppingCardButton = ({ cart }: ShoppingCardButtonProps) => {
+const ShoppingCartButton = ({ cart }: ShoppingCartButtonProps) => {
   function closeDropdown() {
     const elem = document.activeElement as HTMLElement;
     if (elem) {
@@ -61,4 +61,4 @@ const ShoppingCardButton = ({ cart }: ShoppingCardButtonProps) => {
   );
 };
 
-export default ShoppingCardButton;
+export default ShoppingCartButton;

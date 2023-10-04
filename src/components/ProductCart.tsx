@@ -3,17 +3,17 @@ import Link from "next/link";
 import PriceTag from "./PriceTag";
 import Image from "next/image";
 
-type ProdcutCardProps = {
+type ProdcutCartProps = {
   product: Product;
 };
 
-const ProductCard = ({ product }: ProdcutCardProps) => {
+const ProductCart = ({ product }: ProdcutCartProps) => {
   const isNew =
     Date.now() - new Date(product.createdAt).getTime() <
     1000 * 60 * 60 * 24 * 7;
   return (
     <Link
-      className="card w-full bg-base-100 hover:shadow-xl transition-shadow"
+      className="card-body w-full bg-base-100 hover:shadow-xl transition-shadow"
       href={"/products/" + product.id}
     >
       <figure>
@@ -35,4 +35,4 @@ const ProductCard = ({ product }: ProdcutCardProps) => {
   );
 };
 
-export default ProductCard;
+export default ProductCart;

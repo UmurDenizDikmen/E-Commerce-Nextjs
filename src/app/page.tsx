@@ -1,5 +1,5 @@
 import { prisma } from "@/lib/prismadb";
-import ProductCard from "@/components/ProductCard";
+import ProductCard from "@/components/ProductCart";
 import Image from "next/image";
 import Link from "next/link";
 

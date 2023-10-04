@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from "public/images/logo.png";
 import { redirect } from "next/navigation";
-import ShoppingCardButton from "./ShoppingCardButton";
+import ShoppingCardButton from "./ShoppingCartButton";
 import { getCart } from "@/lib/cart";
 
 async function searchProducts(formData: FormData) {
