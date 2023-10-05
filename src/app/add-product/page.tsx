@@ -2,6 +2,8 @@ import React from "react";
 import { prisma } from "@/lib/prismadb";
 import { redirect } from "next/navigation";
 import FormSubmitButton from "@/components/FormSubmitButton";
+import { getServerSession } from "next-auth";
+import { options } from "../api/auth/[...nextauth]/options";
 
 export const metadata = {
   title: "Add Prodcut - Flowmazon",
@@ -9,6 +11,10 @@ export const metadata = {
 
 async function addProduct(formData: FormData) {
   "use server";
+  const session = await getServerSession(options);
+  if (!session) {
+    redirect("/api/auth/signin?callbackUrl=/addProduct");
+  }
   const name = formData.get("name")?.toString() as string;
   const description = formData.get("description")?.toString() as string;
   const imageUrl = formData.get("imageUrl")?.toString() as string;
@@ -28,7 +34,12 @@ async function addProduct(formData: FormData) {
   redirect("/");
 }
 
-const AddProductPage = () => {
+export default async function AddProductPage() {
+  const session = await getServerSession(options);
+
+  if (!session) {
+    redirect("/api/auth/signin?callbackUrl=/addProduct");
+  }
   return (
     <div>
       <h1 className="mb-3 text-lg font-bold text-black">Add Product</h1>
@@ -64,6 +75,4 @@ const AddProductPage = () => {
       </form>
     </div>
   );
-};
-
-export default AddProductPage;
+}

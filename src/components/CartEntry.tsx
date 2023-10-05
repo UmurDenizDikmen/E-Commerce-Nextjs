@@ -47,13 +47,22 @@ export default function CartEntry({
             defaultValue={cartItems.quantity}
             onChange={(e) => {
               const newQuantity = parseInt(e.currentTarget.value);
+              startTransition(async () => {
+                await setProducutQuantity(cartItems.product.id, newQuantity);
+              });
             }}
           >
+            <option value={0}>0 (Remove)</option>
             {quantityOptions}
           </select>
         </div>
         <div className="flex items-center gap-2">
-          Total : {cartItems.product.price * cartItems.quantity}
+          Total : {formatPrice(cartItems.product.price * cartItems.quantity)}
+          {isPending ? (
+            <span className="loading loading-spinner loading-sm"></span>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className="divider" />
