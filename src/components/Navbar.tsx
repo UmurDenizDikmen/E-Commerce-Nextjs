@@ -31,7 +31,7 @@ export default async function Navbar() {
               width={90}
               alt={""}
             />
-            GlowMazon
+            Flowmazon
           </Link>
         </div>
         <div className="flex-none gap-2">
