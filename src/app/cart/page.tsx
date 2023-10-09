@@ -14,11 +14,11 @@ export default async function Cart() {
   return (
     <div>
       <h1 className="mb-6 text-3xl font-bold">Shopping Cart</h1>
-      {cart?.items.map((cartItems) => {
+      {cart?.items.map((cartItem) => {
         return (
           <CartEntry
-            cartItems={cartItems}
-            key={cartItems.id}
+            cartItem={cartItem}
+            key={cartItem.id}
             setProducutQuantity={setProducutQuantity}
           />
         );

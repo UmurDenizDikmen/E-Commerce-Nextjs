@@ -8,7 +8,7 @@ export default async function setProducutQuantity(
   quantity: number
 ) {
   const cart = (await getCart()) ?? (await createCart());
-  const articleCart = cart.items.find((items) => items.productId);
+  const articleCart = cart.items.find((items) => items.productId === productId);
 
   if (quantity === 0) {
     if (articleCart) {

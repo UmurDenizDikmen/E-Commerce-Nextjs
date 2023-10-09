@@ -5,15 +5,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTransition } from "react";
 
-type CartEntryProsp = {
-  cartItems: CartItemWithProduct;
+type CartEntryPros = {
+  cartItem: CartItemWithProduct;
   setProducutQuantity: (productId: string, quantity: number) => Promise<void>;
 };
 
 export default function CartEntry({
-  cartItems,
+  cartItem: { product, quantity },
   setProducutQuantity,
-}: CartEntryProsp) {
+}: CartEntryPros) {
   const [isPending, startTransition] = useTransition();
   const quantityOptions: JSX.Element[] = [];
   for (let i = 1; i <= 99; i++) {
@@ -27,28 +27,27 @@ export default function CartEntry({
     <div>
       <div className="flex flex-wrap items-center gap-3">
         <Image
-          src={cartItems.product.imageUrl}
-          alt={cartItems.product.name}
+          src={product.imageUrl}
+          alt={product.name}
           width={200}
           height={200}
           className="rounded-lg"
-        />{" "}
+        />
       </div>
       <div>
-        <Link href={"/product/" + cartItems.product.id} className="font-bold">
-          {" "}
-          {cartItems.product.name}
+        <Link href={"/products/" + product.id} className="font-bold">
+          {product.name}
         </Link>
-        <div>Price : {formatPrice(cartItems.product.price)}</div>
+        <div>Price : {formatPrice(product.price)}</div>
         <div className="my-1 flex items-center gap-2">
           Quantity:
           <select
             className="select-bordered select w-full max-w-[%80]"
-            defaultValue={cartItems.quantity}
+            defaultValue={quantity}
             onChange={(e) => {
               const newQuantity = parseInt(e.currentTarget.value);
               startTransition(async () => {
-                await setProducutQuantity(cartItems.product.id, newQuantity);
+                await setProducutQuantity(product.id, newQuantity);
               });
             }}
           >
@@ -56,8 +55,8 @@ export default function CartEntry({
             {quantityOptions}
           </select>
         </div>
-        <div className="flex items-center gap-2">
-          Total : {formatPrice(cartItems.product.price * cartItems.quantity)}
+        <div className="flex items-center gap-3">
+          Total : {formatPrice(product.price * quantity)}
           {isPending ? (
             <span className="loading loading-spinner loading-sm"></span>
           ) : (
