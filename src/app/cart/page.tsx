@@ -11,8 +11,6 @@ export const metadata = {
 export default async function Cart() {
   const cart = await getCart();
 
-  useEffect(() => {}, [cart]);
-
   return (
     <div>
       <h1 className="mb-6 text-3xl font-bold">Shopping Cart</h1>
