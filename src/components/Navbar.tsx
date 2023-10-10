@@ -7,7 +7,6 @@ import { getCart } from "@/lib/cart";
 import UserMenuButton from "./UserMenuButton";
 import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
-import { useEffect } from "react";
 
 async function searchProducts(formData: FormData) {
   "use server";
