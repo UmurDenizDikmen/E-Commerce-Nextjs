@@ -55,4 +55,3 @@ export default function UserMenuButton({ session }: UserMenuButton) {
     </div>
   );
 }
-export const revalidate = 1;
