@@ -61,5 +61,6 @@ const ShoppingCartButton = ({ cart }: ShoppingCartButtonProps) => {
     </div>
   );
 };
+export const revalidate = 1;
 
 export default ShoppingCartButton;
