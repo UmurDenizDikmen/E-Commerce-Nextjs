@@ -61,4 +61,3 @@ export default async function Home({
     </div>
   );
 }
-revalidatePath("/", "page");
