@@ -3,6 +3,7 @@ import ProductCard from "@/components/ProductCart";
 import Image from "next/image";
 import Link from "next/link";
 import PaginationBar from "@/components/PaginationBar";
+import { revalidatePath } from "next/cache";
 
 type HomeProps = {
   searchParams: { page: string };
@@ -60,3 +61,4 @@ export default async function Home({
     </div>
   );
 }
+revalidatePath("/", "page");
