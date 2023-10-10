@@ -38,5 +38,5 @@ export async function incerementProductQuantity(productId: string) {
     });
   }
 
-  revalidatePath("/products/[id]", "layout");
+  revalidatePath("/products/[id]", "page");
 }
