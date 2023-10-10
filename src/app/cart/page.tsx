@@ -3,6 +3,7 @@ import { getCart } from "@/lib/cart";
 import React from "react";
 import setProducutQuantity from "./action";
 import formatPrice from "@/lib/format";
+import { revalidatePath } from "next/cache";
 
 export const metadata = {
   title: "Your Cart",
@@ -10,6 +11,7 @@ export const metadata = {
 
 export default async function Cart() {
   const cart = await getCart();
+  revalidatePath("/cart", "page");
 
   return (
     <div>
