@@ -4,7 +4,7 @@ import Image from "next/image";
 import PriceTag from "@/components/PriceTag";
 import { cache } from "react";
 import { Metadata } from "next";
-import AddToCartButton from "@/components/AddToCartButton";
+import AddToCartButton from "./AddToCartButton";
 import { incerementProductQuantity } from "./action";
 
 type ProductPageProps = {

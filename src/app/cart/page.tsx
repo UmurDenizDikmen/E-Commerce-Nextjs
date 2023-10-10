@@ -1,4 +1,4 @@
-import CartEntry from "@/components/CartEntry";
+import CartEntry from "./CartEntry";
 import { getCart } from "@/lib/cart";
 import React from "react";
 import setProducutQuantity from "./action";
