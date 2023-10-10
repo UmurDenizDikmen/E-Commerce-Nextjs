@@ -1,9 +1,8 @@
 import CartEntry from "./CartEntry";
 import { getCart } from "@/lib/cart";
-import React from "react";
+import React, { useEffect } from "react";
 import setProducutQuantity from "./action";
 import formatPrice from "@/lib/format";
-import { revalidatePath } from "next/cache";
 
 export const metadata = {
   title: "Your Cart",
@@ -11,7 +10,8 @@ export const metadata = {
 
 export default async function Cart() {
   const cart = await getCart();
-  revalidatePath("/cart", "page");
+
+  useEffect(() => {}, [cart]);
 
   return (
     <div>
