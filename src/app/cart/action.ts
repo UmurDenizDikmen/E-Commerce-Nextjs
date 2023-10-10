@@ -59,5 +59,5 @@ export default async function setProducutQuantity(
     }
   }
 
-  revalidatePath("/cart");
+  revalidatePath("/cart", "page");
 }
