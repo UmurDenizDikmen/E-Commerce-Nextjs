@@ -1,2 +1,3 @@
+# Building a Fullstack Ecommerce-website with React, NextJS, TailwindCSS & Prisma & MongoDB && NextAuth
 
-## E-Commerce-Website-Nextjs
+![image](./public/images/ss-project-glowmazon.png)
