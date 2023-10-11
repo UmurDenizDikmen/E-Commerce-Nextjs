@@ -7,6 +7,7 @@ import UserMenuButton from "./UserMenuButton";
 import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import { getCart } from "@/lib/cart";
+import { useQuery } from "@tanstack/react-query";
 
 async function searchProducts(formData: FormData) {
   "use server";
@@ -17,8 +18,12 @@ async function searchProducts(formData: FormData) {
 }
 
 export default async function Navbar() {
+  const { data: cart } = useQuery({
+    queryFn: () => getCart(),
+    queryKey: ["cart"],
+  });
   const session = await getServerSession(options);
-  const cart = await getCart();
+  // const cart = await getCart();
 
   return (
     <div className="bg-base-100">
@@ -45,7 +50,10 @@ export default async function Navbar() {
               />
             </div>
           </form>
-          <ShoppingCardButton cart={cart} />
+          <ShoppingCardButton
+            TotalSize={cart?.size}
+            TotalSubs={cart?.subtotal}
+          />
           <UserMenuButton session={session} />
         </div>
       </div>

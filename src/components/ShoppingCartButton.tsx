@@ -4,10 +4,14 @@ import formatPrice from "@/lib/format";
 import Link from "next/link";
 
 type ShoppingCartButtonProps = {
-  cart: ShoppingCart | null;
+  TotalSize: number | undefined;
+  TotalSubs: number | undefined;
 };
 
-const ShoppingCartButton = ({ cart }: ShoppingCartButtonProps) => {
+const ShoppingCartButton = ({
+  TotalSize,
+  TotalSubs,
+}: ShoppingCartButtonProps) => {
   function closeDropdown() {
     const elem = document.activeElement as HTMLElement;
     if (elem) {
@@ -34,7 +38,7 @@ const ShoppingCartButton = ({ cart }: ShoppingCartButtonProps) => {
             />
           </svg>
           <span className="badge badge-sm indicator-item">
-            {cart?.size || 0}
+            {TotalSize || 0}
           </span>
         </div>
       </label>
@@ -43,9 +47,9 @@ const ShoppingCartButton = ({ cart }: ShoppingCartButtonProps) => {
         className="card dropdown-content card-compact mt-3 w-52 bg-base-100 shadow z-30"
       >
         <div className="card-body">
-          <span className="text-lg font-bold ">{cart?.size || 0}</span>
+          <span className="text-lg font-bold ">{TotalSize || 0}</span>
           <span className="text-info">
-            Subtotal:{formatPrice(cart?.subtotal || 0)}
+            Subtotal:{formatPrice(TotalSubs || 0)}
           </span>
           <div className="card-actions">
             <Link
