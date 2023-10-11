@@ -1,18 +1,13 @@
 "use client";
-import { getCart } from "@/lib/cart";
+import { ShoppingCart } from "@/lib/cart";
 import formatPrice from "@/lib/format";
 import Link from "next/link";
-import { useQuery } from "react-query/types/react";
 
-// type ShoppingCartButtonProps = {
-//   cart: ShoppingCart | null;
-// };
+type ShoppingCartButtonProps = {
+  cart: ShoppingCart | null;
+};
 
-const ShoppingCartButton = () => {
-  const { data: cart } = useQuery({
-    queryFn: () => getCart(),
-    queryKey: ["getCart"],
-  });
+const ShoppingCartButton = ({ cart }: ShoppingCartButtonProps) => {
   function closeDropdown() {
     const elem = document.activeElement as HTMLElement;
     if (elem) {
