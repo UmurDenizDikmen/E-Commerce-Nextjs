@@ -1,25 +1,19 @@
 "use client";
-import { ShoppingCart, getCart } from "@/lib/cart";
+import { ShoppingCart } from "@/lib/cart";
 import formatPrice from "@/lib/format";
 import Link from "next/link";
-import { useQuery } from "react-query";
 
-// type ShoppingCartButtonProps = {
-//   cart: ShoppingCart | null;
-// };
+type ShoppingCartButtonProps = {
+  cart: ShoppingCart | null;
+};
 
-const ShoppingCartButton = () => {
+const ShoppingCartButton = ({ cart }: ShoppingCartButtonProps) => {
   function closeDropdown() {
     const elem = document.activeElement as HTMLElement;
     if (elem) {
       elem.blur();
     }
   }
-
-  const { data: cart } = useQuery({
-    queryFn: () => getCart(),
-    queryKey: ["cart"],
-  });
 
   return (
     <div className="dropdown dropdown-end">

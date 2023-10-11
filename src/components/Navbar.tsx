@@ -45,7 +45,7 @@ export default async function Navbar() {
               />
             </div>
           </form>
-          <ShoppingCardButton />
+          <ShoppingCardButton cart={cart} />
           <UserMenuButton session={session} />
         </div>
       </div>
