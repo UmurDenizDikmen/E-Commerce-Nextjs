@@ -1,23 +1,20 @@
 "use client";
-import { ShoppingCart } from "@/lib/cart";
+import { getCart } from "@/lib/cart";
 import formatPrice from "@/lib/format";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
 
-type ShoppingCartButtonProps = {
-  TotalSize: number | undefined;
-  TotalSubs: number | undefined;
-};
-
-const ShoppingCartButton = ({
-  TotalSize,
-  TotalSubs,
-}: ShoppingCartButtonProps) => {
+const ShoppingCartButton = () => {
   function closeDropdown() {
     const elem = document.activeElement as HTMLElement;
     if (elem) {
       elem.blur();
     }
   }
+  const { data: cart } = useQuery({
+    queryFn: () => getCart(),
+    queryKey: ["cart"],
+  });
 
   return (
     <div className="dropdown dropdown-end">
@@ -38,7 +35,7 @@ const ShoppingCartButton = ({
             />
           </svg>
           <span className="badge badge-sm indicator-item">
-            {TotalSize || 0}
+            {cart?.size || 0}
           </span>
         </div>
       </label>
@@ -47,9 +44,9 @@ const ShoppingCartButton = ({
         className="card dropdown-content card-compact mt-3 w-52 bg-base-100 shadow z-30"
       >
         <div className="card-body">
-          <span className="text-lg font-bold ">{TotalSize || 0}</span>
+          <span className="text-lg font-bold ">{cart?.size || 0}</span>
           <span className="text-info">
-            Subtotal:{formatPrice(TotalSubs || 0)}
+            Subtotal:{formatPrice(cart?.subtotal || 0)}
           </span>
           <div className="card-actions">
             <Link
