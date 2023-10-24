@@ -22,7 +22,7 @@ export default async function Cart() {
           />
         );
       })}
-      {!cart?.items.length && <p>You are cart is empty</p>}
+      {!cart?.items.length && <p>Your cart is empty</p>}
       <div className="flex flex-col items-end gap-2 sm:items-center ">
         <p className="mb-3 font-bold ">
           Total : {formatPrice(cart?.subtotal || 0)}
